@@ -14,7 +14,7 @@ dotenv.config();
 async function connectToDB() {
   try {
     await prisma.$connect()
-    console.log("*** DB connection successfull!!")
+    console.log("*** DB connection successfully(--)!!!!!")
   } catch (error) {
     console.log("*** DB connection failed!")
     console.log(error);
