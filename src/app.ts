@@ -16,7 +16,7 @@ import cookieParser from "cookie-parser";
 app.use(
   cors({
     // origin: 'http://localhost:5173',
-    origin: 'https://digital-wallet-client-beta.vercel.app',
+    // origin: 'https://digital-wallet-client-beta.vercel.app',
      credentials: true,
    })
 );
@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Welcome to Wallet Management Website');
+    res.send('Welcome to Portfolio Builder Website');
 });
 // Error handling
 // app.use(errorHandler);

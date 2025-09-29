@@ -4,17 +4,29 @@ import mongoose from "mongoose";
 import app from "./app";
 // import { envVars } from "./app/config/env";
 import dotenv from "dotenv";
+import { prisma } from "./config/db";
 
 
 
 let server: Server;
 
 dotenv.config();
+async function connectToDB() {
+  try {
+    await prisma.$connect()
+    console.log("*** DB connection successfull!!")
+  } catch (error) {
+    console.log("*** DB connection failed!")
+    console.log(error);
+    process.exit(1);
+  }
+}
 const startServer = async () => {
     try {
-        await mongoose.connect(process.env.DB_URL!)
+          await connectToDB()
+        // await mongoose.connect(process.env.DB_URL!)
 
-        console.log("Successfully Connected to MongoDB!!");
+        // console.log("Successfully Connected to MongoDB!!");
 
         server = app.listen(process.env.PORT, () => {
             console.log(`Server is listening to port ${process.env.PORT}`);
