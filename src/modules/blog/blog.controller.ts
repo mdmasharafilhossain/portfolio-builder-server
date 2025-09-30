@@ -2,7 +2,7 @@
 import { AuthRequest } from "../../types";
 import { catchAsync } from "../../utils/catchAsync";
 import { createBlogSchema } from "./blog.schema";
-import { BlogService } from "./blog.service";
+import { blogService, BlogService } from "./blog.service";
 
 
 
@@ -13,7 +13,7 @@ export class BlogController {
 
   const authorId = req.user!.id;
 
-  const blog = await BlogService.createBlog(body, authorId);
+  const blog = await blogService.createBlog(body, authorId);
 
   res.status(201).json({
     success: true,
@@ -22,4 +22,8 @@ export class BlogController {
   });
 });
 
+
+
 }
+
+export const blogController = new BlogController();
