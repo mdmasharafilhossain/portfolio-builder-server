@@ -1,3 +1,5 @@
+import { Request } from "express";
+import { ParsedQs } from "qs";
 // src/types/index.ts
 export interface User {
   id: string;
@@ -76,7 +78,12 @@ export interface Experience {
   technologies: string[];
 }
 
-export interface AuthRequest extends Request {
+export interface AuthRequest<
+  P = {},          // req.params
+  ResBody = any,   // response body
+  ReqBody = any,   // request body
+  ReqQuery = ParsedQs // query parameters
+> extends Request<P, ResBody, ReqBody, ReqQuery> {
   user?: {
     id: string;
     email: string;
