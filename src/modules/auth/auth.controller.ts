@@ -6,7 +6,7 @@ import { authService } from "./auth.service";
 export class AuthController {
      login = catchAsync(async (req: Request, res: Response) => {
   
-    const {body} = loginSchema.parse(req);
+    const body = loginSchema.parse(req.body);
 
     const authResponse = await authService.login(body);
     const cookieOptions:CookieOptions = {
@@ -29,7 +29,7 @@ export class AuthController {
   
   register = catchAsync(async (req: Request, res: Response) => {
     
-    const {body} = registerSchema.parse(req.body);
+    const body = registerSchema.parse(req.body);
 
     const authResponse = await authService.register(body);
 

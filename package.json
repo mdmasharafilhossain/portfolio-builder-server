@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "Admin": "ts-node src/utils/seedAdmin.ts"
+    "Admin": "ts-node src/utils/seedAdmin.ts",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
