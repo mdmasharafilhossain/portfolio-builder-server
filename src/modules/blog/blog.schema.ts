@@ -1,4 +1,5 @@
 
+import { Blog } from '@prisma/client';
 import { z } from 'zod';
 
 export const createBlogSchema = z.object({
@@ -39,6 +40,11 @@ export const blogSlugSchema = z.object({
     slug: z.string().min(1, 'Slug is required')
   })
 });
+export interface BlogWithAuthor extends Blog {
+author: {
+    name: string
+}
+}
 
 export type CreateBlogInput = z.infer<typeof createBlogSchema>['body'];
 export type UpdateBlogInput = z.infer<typeof updateBlogSchema>['body'];
