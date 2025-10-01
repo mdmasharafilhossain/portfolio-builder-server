@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import blogRoutes from './modules/blog/blog.routes'
 import authRoutes from './modules/auth/auth.routes'
 import projectRoutes from './modules/project/project.routes'
+import aboutRoutes from './modules/about/about.route'
 
 
 
@@ -27,7 +28,7 @@ app.use(
 app.use("/api/blogs", blogRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
-
+app.use('/api/about', aboutRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to Portfolio Builder Website');
