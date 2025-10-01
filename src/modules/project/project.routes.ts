@@ -12,10 +12,11 @@ router.get('/featured', projectController.getFeaturedProjects);
 router.get('/technologies', projectController.getAllTechnologies);
 router.get('/technology/:technology', projectController.getProjectsByTechnology);
 router.get('/:id', projectController.getProjectById);
-// router.use(authenticateToken, requireAdmin);
+
 
 
 // Project management routes
+router.use(authenticateToken, requireAdmin);
 router.get('/', projectController.getAllProjects);
 router.post('/', projectController.createProject);
 router.get('/:id', projectController.getProjectById);
