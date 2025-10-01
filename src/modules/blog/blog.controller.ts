@@ -7,20 +7,20 @@ import { blogService, BlogService } from "./blog.service";
 
 
 export class BlogController {
-    createBlog = catchAsync<AuthRequest>(async (req, res) => {
- 
-  const { body } = createBlogSchema.parse({ body: req.body });
+  createBlog = catchAsync<AuthRequest>(async (req, res) => {
 
-  const authorId = req.user!.id;
+    const { body } = createBlogSchema.parse({ body: req.body });
 
-  const blog = await blogService.createBlog(body, authorId);
+    const authorId = req.user!.id;
 
-  res.status(201).json({
-    success: true,
-    data: blog,
-    message: "Blog created successfully",
+    const blog = await blogService.createBlog(body, authorId);
+
+    res.status(201).json({
+      success: true,
+      data: blog,
+      message: "Blog created successfully",
+    });
   });
-});
 
 
 

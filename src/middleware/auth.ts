@@ -6,22 +6,22 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1];
 
-    if (!token){
+    if (!token) {
         return AppError.unauthorized('Access token required')
     }
 
-    jwt.verify(token, process.env.JWT_SECRET!,(err,user:any)=>{
-   if(err){
-    return AppError.forbidden('Invalid or expired token')
-   }
-   req.user = user;
-   next()
+    jwt.verify(token, process.env.JWT_SECRET!, (err, user: any) => {
+        if (err) {
+            return AppError.forbidden('Invalid or expired token')
+        }
+        req.user = user;
+        next()
     })
 }
 
 export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
-  if (req.user?.role !== 'ADMIN') {
-    return res.status(403).json({ message: 'Admin access required' });
-  }
-  next();
+    if (req.user?.role !== 'ADMIN') {
+        return res.status(403).json({ message: 'Admin access required' });
+    }
+    next();
 };
