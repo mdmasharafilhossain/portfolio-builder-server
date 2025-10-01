@@ -19,7 +19,7 @@ export class AuthController {
 
   
   register = catchAsync(async (req: Request, res: Response) => {
-    // Validate request body
+    
     const { body } = registerSchema.parse(req);
 
     const authResponse = await authService.register(body);
