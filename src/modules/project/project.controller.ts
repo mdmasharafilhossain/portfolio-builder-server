@@ -1,4 +1,4 @@
-// src/controllers/project.controller.ts
+
 import { Request, Response } from 'express';
 import { catchAsync } from '../../utils/catchAsync';
 import { projectService } from './project.service';
