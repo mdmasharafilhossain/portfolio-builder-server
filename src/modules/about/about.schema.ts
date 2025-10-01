@@ -1,4 +1,5 @@
 
+import { About } from '@prisma/client';
 import { z } from 'zod';
 
 
@@ -66,6 +67,12 @@ export const aboutParamsSchema = z.object({
   })
 });
 
+export interface AboutWithRelations extends About {
+  
+  socialLinks: any[];
+  skills: any[];
+  experiences: any[];
+}
 export type CreateAboutInput = z.infer<typeof createAboutSchema>['body'];
 export type UpdateAboutInput = z.infer<typeof updateAboutSchema>['body'];
 export type AboutParams = z.infer<typeof aboutParamsSchema>['params'];
