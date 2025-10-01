@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import blogRoutes from './modules/blog/blog.routes'
 import authRoutes from './modules/auth/auth.routes'
+import projectRoutes from './modules/project/project.routes'
 
 
 
@@ -25,7 +26,7 @@ app.use(
 // Routes
 app.use("/api/blogs", blogRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use('/api/projects', projectRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {
