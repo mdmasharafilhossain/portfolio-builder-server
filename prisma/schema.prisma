@@ -22,7 +22,7 @@ model User {
   email     String   @unique
   password  String
   name      String
-  role      Role     @default(ADMIN)
+  role      Role     @default(USER)
   blogs     Blog[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
