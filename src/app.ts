@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import blogRoutes from './modules/blog/blog.routes'
+import authRoutes from './modules/auth/auth.routes'
 // import walletRouter from "./app/modules/wallet/wallet.routes";
 // import adminRouter from "./app/modules/admin/admin.routes";
 // import { errorHandler } from "./app/middlewares/globalErrorHandler";
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 // Routes
 app.use("/api/blogs", blogRoutes);
+app.use('/api/auth', authRoutes);
 // app.use("/api/v1/wallet", walletRouter);
 // app.use("/api/v1/transactions", transactionRouter);
 // app.use("/api/v1/admin", adminRouter);
