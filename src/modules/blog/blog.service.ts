@@ -9,7 +9,7 @@ author: {
 }
 }
 export class BlogService {
-static createBlog: any;
+
 // For Create Blog 
 async createBlog(data: CreateBlogInput, authorId: string): Promise<BlogWithAuthor> {
     try {
