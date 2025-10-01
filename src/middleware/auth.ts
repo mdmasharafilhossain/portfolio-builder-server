@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../utils/AppError";
-import jwt from 'jsonwebtoken';
+import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import { AuthRequest } from "../types";
 export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization']
@@ -24,4 +24,18 @@ export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction
         return res.status(403).json({ message: 'Admin access required' });
     }
     next();
+};
+
+export const verifyToken = (token: string): any => {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET!);
+  } catch (error) {
+    if (error instanceof TokenExpiredError) {
+      throw AppError.unauthorized("Token expired");
+    }
+    if (error instanceof JsonWebTokenError) {
+      throw AppError.unauthorized("Invalid token");
+    }
+    throw AppError.unauthorized("Token verification failed");
+  }
 };
