@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { CookieOptions, Request, Response } from "express";
 import { catchAsync } from "../../utils/catchAsync";
 import { loginSchema, registerSchema } from "./auth.schema";
 import { authService } from "./auth.service";
@@ -6,9 +6,18 @@ import { authService } from "./auth.service";
 export class AuthController {
      login = catchAsync(async (req: Request, res: Response) => {
   
-    const { body } = loginSchema.parse(req);
+    const {body} = loginSchema.parse(req);
 
     const authResponse = await authService.login(body);
+    const cookieOptions:CookieOptions = {
+    httpOnly: true,        
+    secure: true, 
+    sameSite: 'none',    
+   
+  };
+
+  
+  res.cookie("token", authResponse.token, cookieOptions);
 
     res.json({
       success: true,
@@ -20,7 +29,7 @@ export class AuthController {
   
   register = catchAsync(async (req: Request, res: Response) => {
     
-    const { body } = registerSchema.parse(req);
+    const {body} = registerSchema.parse(req.body);
 
     const authResponse = await authService.register(body);
 

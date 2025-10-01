@@ -12,7 +12,8 @@ import authRoutes from './modules/auth/auth.routes'
 
 
  const app = express();
-
+app.use(express.json());
+app.use(cookieParser());
 // Middlewares
 app.use(
   cors({
@@ -22,8 +23,7 @@ app.use(
    })
 );
 
-app.use(express.json());
-app.use(cookieParser());
+
 // if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // Routes
