@@ -36,7 +36,22 @@ async createBlog(data: CreateBlogInput, authorId: string): Promise<BlogWithAutho
       throw AppError.internalError('Failed to create blog');
     }
   }
-
+async getBlogBySlug(slug: string): Promise<BlogWithAuthor | null> {
+    try {
+      return await prisma.blog.findUnique({
+        where: { slug },
+        include: { 
+          author: { 
+            select: { 
+              name: true 
+            } 
+          } 
+        }
+      });
+    } catch (error) {
+      throw new Error(`Failed to fetch blog: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
 async getAllPublishedBlogs(): Promise<BlogWithAuthor[]> {
     try {
       return await prisma.blog.findMany({

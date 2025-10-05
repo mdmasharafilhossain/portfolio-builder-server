@@ -2,9 +2,10 @@
 import { Request, Response } from "express";
 import { AuthRequest } from "../../types";
 import { catchAsync } from "../../utils/catchAsync";
-import { blogParamsSchema, createBlogSchema, updateBlogSchema } from "./blog.schema";
-import { blogService, BlogService } from "./blog.service";
+import { blogParamsSchema, blogSlugSchema, createBlogSchema, updateBlogSchema } from "./blog.schema";
+import { blogService } from "./blog.service";
 import { AppError } from "../../utils/AppError";
+import { ZodError } from "zod";
 
 
 
@@ -71,6 +72,50 @@ export class BlogController {
       message: 'All blogs fetched successfully'
     });
   });
+  
+   async getBlogBySlug(req: Request, res: Response) {
+    try {
+      // Validate request params
+      const { params } = blogSlugSchema.parse(req);
+      const { slug } = params;
+
+      const blog = await blogService.getBlogBySlug(slug);
+
+      if (!blog) {
+        return res.status(404).json({
+          success: false,
+          message: 'Blog not found'
+        });
+      }
+
+      if (!blog.published) {
+        return res.status(404).json({
+          success: false,
+          message: 'Blog not found'
+        });
+      }
+
+      res.json({
+        success: true,
+        data: blog,
+        message: 'Blog fetched successfully'
+      });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid slug parameter',
+          errors: error
+        });
+      }
+
+      console.error('Get blog by slug error:', error);
+      res.status(500).json({
+        success: false,
+        message: error instanceof Error ? error.message : 'Internal server error'
+      });
+    }
+  }
 
 
   getBlogById = catchAsync(async (req: AuthRequest, res: Response) => {
