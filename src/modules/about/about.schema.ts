@@ -30,7 +30,7 @@ export const experienceSchema = z.object({
 
 
 export const createAboutSchema = z.object({
-  body: z.object({
+  
     name: z.string().min(1, 'Name is required').max(100, 'Name too long'),
     title: z.string().min(1, 'Title is required').max(200, 'Title too long'),
     bio: z.string().min(1, 'Bio is required').max(2000, 'Bio too long'),
@@ -42,11 +42,11 @@ export const createAboutSchema = z.object({
     socialLinks: z.array(socialLinkSchema).default([]),
     skills: z.array(skillSchema).default([]),
     experiences: z.array(experienceSchema).default([])
-  })
+ 
 });
 
 export const updateAboutSchema = z.object({
-  body: z.object({
+
     name: z.string().min(1).max(100).optional(),
     title: z.string().min(1).max(200).optional(),
     bio: z.string().min(1).max(2000).optional(),
@@ -58,7 +58,7 @@ export const updateAboutSchema = z.object({
     socialLinks: z.array(socialLinkSchema).optional(),
     skills: z.array(skillSchema).optional(),
     experiences: z.array(experienceSchema).optional()
-  })
+
 });
 
 export const aboutParamsSchema = z.object({
@@ -73,8 +73,8 @@ export interface AboutWithRelations extends About {
   skills: any[];
   experiences: any[];
 }
-export type CreateAboutInput = z.infer<typeof createAboutSchema>['body'];
-export type UpdateAboutInput = z.infer<typeof updateAboutSchema>['body'];
+export type CreateAboutInput = z.infer<typeof createAboutSchema>;
+export type UpdateAboutInput = z.infer<typeof updateAboutSchema>;
 export type AboutParams = z.infer<typeof aboutParamsSchema>['params'];
 export type SocialLink = z.infer<typeof socialLinkSchema>;
 export type Skill = z.infer<typeof skillSchema>;

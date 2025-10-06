@@ -2,6 +2,8 @@ import { CookieOptions, Request, Response } from "express";
 import { catchAsync } from "../../utils/catchAsync";
 import { loginSchema, registerSchema } from "./auth.schema";
 import { authService } from "./auth.service";
+import { AuthRequest } from "../../types";
+import { AppError } from "../../utils/AppError";
 
 export class AuthController {
      login = catchAsync(async (req: Request, res: Response) => {
@@ -37,6 +39,19 @@ export class AuthController {
       success: true,
       data: authResponse,
       message: 'User registered successfully'
+    });
+  });
+    getProfile = catchAsync(async (req: AuthRequest, res: Response) => {
+    if (!req.user) {
+      throw AppError.unauthorized('Not authenticated');
+    }
+
+    const profile = await authService.getUserProfile(req.user.id);
+
+    res.json({
+      success: true,
+      data: profile,
+      message: 'User profile fetched successfully',
     });
   });
 

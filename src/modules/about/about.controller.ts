@@ -25,7 +25,7 @@ export class AboutController {
 
   
   createAbout = catchAsync(async (req: AuthRequest, res: Response) => {
-    const { body } = createAboutSchema.parse(req);
+    const  body  = createAboutSchema.parse(req.body);
 
     const about = await aboutService.createAbout(body);
 
@@ -38,7 +38,7 @@ export class AboutController {
 
   
   updateAbout = catchAsync(async (req: AuthRequest, res: Response) => {
-    const { body } = updateAboutSchema.parse(req);
+    const  body = updateAboutSchema.parse(req.body);
 
     const about = await aboutService.updateAbout(body);
 
@@ -51,7 +51,7 @@ export class AboutController {
 
   
   upsertAbout = catchAsync(async (req: AuthRequest, res: Response) => {
-    const { body } = createAboutSchema.parse(req);
+    const body = createAboutSchema.parse(req.body);
 
     const about = await aboutService.upsertAbout(body);
 

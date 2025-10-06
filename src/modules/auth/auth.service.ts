@@ -81,6 +81,30 @@ export class AuthService {
       throw AppError.internalError('Failed to login');
     }
   }
+  async getUserProfile(userId: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    if (!user) {
+      throw AppError.notFound('User not found');
+    }
+
+    return user;
+  } catch (error) {
+    if (error instanceof AppError) throw error;
+    throw AppError.internalError('Failed to get user profile');
+  }
+}
       private generateToken(user: User): string {
     const payload = {
       id: user.id,

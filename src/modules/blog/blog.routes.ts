@@ -1,4 +1,4 @@
-// src/routes/blog.routes.ts
+
 import express from 'express';
 import { blogController } from './blog.controller';
 import { authenticateToken, requireAdmin } from '../../middleware/auth';
