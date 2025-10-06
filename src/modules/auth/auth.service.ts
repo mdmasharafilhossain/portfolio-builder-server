@@ -105,6 +105,10 @@ export class AuthService {
     throw AppError.internalError('Failed to get user profile');
   }
 }
+async logout(): Promise<string> {
+ 
+  return 'Logout successful';
+}
       private generateToken(user: User): string {
     const payload = {
       id: user.id,

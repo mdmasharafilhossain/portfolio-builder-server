@@ -54,6 +54,21 @@ export class AuthController {
       message: 'User profile fetched successfully',
     });
   });
+   logout = catchAsync(async (req: Request, res: Response) => {
+    // Clear cookie
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    });
+
+    const message = await authService.logout();
+
+    res.json({
+      success: true,
+      message,
+    });
+  });
 
 }
 
