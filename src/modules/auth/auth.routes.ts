@@ -16,8 +16,8 @@ router.post('/register',  authController.register);
 router.get('/profile',authenticateToken, authController.getProfile);
 // router.put('/profile', authController.updateProfile);
 // router.put('/change-password', authController.changePassword);
-// router.get('/verify', authController.verifyToken);
-// router.post('/logout', authController.logout);
+router.get('/verify', authenticateToken,authController.verifyToken);
+router.post('/logout', authController.logout);
 
 // // Admin only routes
 // router.post('/admin/register', requireAdmin, adminRateLimit, authController.register);

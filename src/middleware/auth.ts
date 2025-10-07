@@ -30,7 +30,8 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
     req.user = {
       id: decoded.id as string,
       email: decoded.email as string,
-      role: decoded.role as string
+      role: decoded.role as string,
+      name: decoded.role as string
     };
 
     next();

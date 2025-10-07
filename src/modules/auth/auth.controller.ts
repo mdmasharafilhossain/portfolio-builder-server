@@ -14,7 +14,8 @@ export class AuthController {
     const cookieOptions:CookieOptions = {
     httpOnly: true,        
     secure: true, 
-    sameSite: 'none',    
+    sameSite: 'none',  
+    path: '/',  
    
   };
 
@@ -60,6 +61,7 @@ export class AuthController {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
+      path: '/',
     });
 
     const message = await authService.logout();
@@ -67,6 +69,16 @@ export class AuthController {
     res.json({
       success: true,
       message,
+    });
+  });
+   verifyToken = catchAsync(async (req: AuthRequest, res: Response) => {
+    res.json({
+      success: true,
+      data: {
+        user: req.user,
+        
+      },
+      message: 'Token is valid'
     });
   });
 
