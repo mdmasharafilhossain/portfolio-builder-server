@@ -1,7 +1,7 @@
 
 
 ## Project Overview
-The **Portfolio Backend API** is a secure and modular backend system for a personal portfolio website.  
+The **Portfolio Backend Server** is a secure and modular backend system for a personal portfolio website.  
 It allows the portfolio owner to manage blogs, projects, and personal information through a private dashboard while making all public content accessible to visitors.  
 Built with **Express.js**, **TypeScript**, and **Prisma (PostgreSQL)**, this API provides fast, scalable, and secure endpoints for portfolio content management.
 
