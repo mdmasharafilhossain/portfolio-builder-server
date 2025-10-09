@@ -18,8 +18,8 @@ app.use(cookieParser());
 // Middlewares
 app.use(
   cors({
-    origin: 'http://localhost:3000',
-    // origin: 'https://digital-wallet-client-beta.vercel.app',
+    // origin: 'http://localhost:3000',
+    origin: 'https://portfolio-builder-client-rosy.vercel.app/',
      credentials: true,
    })
 );
