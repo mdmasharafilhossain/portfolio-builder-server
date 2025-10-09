@@ -116,8 +116,8 @@ Built with **Express.js**, **TypeScript**, and **Prisma (PostgreSQL)**, this API
 ### Installation
 
 ```bash
-git clone https://github.com/mdmasharafilhossain/portfolio-builder-server.git
-cd portfolio-builder-server
+git clone https://github.com/mdmasharafilhossain/Portfolio-Builder-Server.git
+cd Portfolio-Builder-Server
 npm install
 ```
 ### Environment Configuration
