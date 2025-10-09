@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // origin: 'http://localhost:3000',
-    origin: 'https://portfolio-builder-client-rosy.vercel.app/',
+    origin: 'https://portfolio-builder-client-rosy.vercel.app',
      credentials: true,
    })
 );
